@@ -3,9 +3,9 @@ import Syncano from 'syncano-server'
 export default (ctx) => {
   const {response} = Syncano(ctx)
 
-  if (ctx.args.firstname && ctx.args.lastname) {
+  if (ctx.args.username && ctx.args.password) {
     response.json({
-      message: `Hello ${ctx.args.firstname} ${ctx.args.lastname}!`
+      message: `Hello ${ctx.args.username} ${ctx.args.password}!`
     })
   } else {
     response.json({

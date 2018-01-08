@@ -13,6 +13,23 @@ class Login extends React.Component {
         }
     }
 
+    handleClick(event) {
+        const s = new SyncanoClient('falling-wildflower-6623');
+        s.post('login/login', {username:this.state.username, password: this.state.password})
+            .then(function(response){
+                console.log(response);
+                if(response.data.code == 200) {
+                    console.log("Login Successfull");
+                }
+                else if(response.data.code == 204){
+                    console.log("Username password do not match");
+                }
+                else {
+                    console.log("Username does not exists");
+                }
+            });
+    }
+
     render () {
         return (
             <div>

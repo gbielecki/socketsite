@@ -1,0 +1,41 @@
+name: login
+description: Login Socket
+version: 0.0.1
+
+endpoints:
+  login:
+    description: Login!
+    file: login.js
+    parameters:
+      username:
+        type: string
+        description: "Username you want to use to log in."
+        example: "Tyler"
+      password:
+        type: string
+        description: "Users password."
+        example: "Durden"
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+            "message": "Login Successfull!"
+            }
+        -
+          exit_code: 204
+          description: Failed
+          example: |
+            {
+              "message": "Username password do not match!"
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "message": "Username does not exists"
+            }
