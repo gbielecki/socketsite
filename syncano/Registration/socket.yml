@@ -3,7 +3,7 @@ description: Description of Registration
 version: 0.0.1
 
 endpoints:
-  hello:
+  registration:
     description: Hello world!
     file: Registration.js
     parameters:
