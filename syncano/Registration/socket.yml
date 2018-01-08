@@ -1,0 +1,42 @@
+name: Registration
+description: Description of Registration
+version: 0.0.1
+
+endpoints:
+  hello:
+    description: Hello world!
+    file: Registration.js
+    parameters:
+      firstName:
+        type: string
+        description: "Username first name."
+        example: "Tyler"
+      lastName:
+        type: string
+        description: "Username last name."
+        example: "Durden"
+      email:
+        type: string
+        description: "Username email and login."
+        example: "Tyler"
+      password:
+        type: string
+        description: "Users password."
+        example: "adminabcd1234"
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+            "message": "Registration Successfull!"
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "message": "Registration does not completed successfully"
+            }
