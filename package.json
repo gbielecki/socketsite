@@ -16,6 +16,8 @@
     "path": "^0.12.7",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-form-validator-core": "^0.3.0",
+    "react-material-ui-form-validator": "^1.0.5",
     "react-tap-event-plugin": "^3.0.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.10.0"
