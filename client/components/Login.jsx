@@ -5,7 +5,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import { ValidatorForm } from 'react-form-validator-core';
 import { TextValidator} from 'react-material-ui-form-validator';
-import Syncano from 'syncano-client'
+import Syncano from 'syncano-client';
+import {Link} from 'react-router-dom';
 
 class Login extends React.Component {
     constructor(props){
@@ -71,6 +72,7 @@ class Login extends React.Component {
                         <br />
                         <RaisedButton label="Submit" primary={true} style={style} type="submit" /* onClick={(event) => this.handleClick(event)}*/ /> 
                         </ValidatorForm>
+                        Don't have an account? <Link to="/register">Sign up</Link>
                     </div>
                 </MuiThemeProvider>
             </div>

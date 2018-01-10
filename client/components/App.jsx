@@ -14,15 +14,6 @@ export default class App extends React.Component {
         return (
         <Router>
         <div className="container">
-            <ul>
-            <li>
-              <Link to="/">Login</Link>
-            </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-          </ul>
-
           <Route exact path="/" component={Login} />
           <Route path="/register" component={Register} />
         </div>

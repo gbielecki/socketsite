@@ -6,6 +6,7 @@ import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import { ValidatorForm } from 'react-form-validator-core';
 import { TextValidator} from 'react-material-ui-form-validator';
+import {Link} from 'react-router-dom';
 
 class Register extends React.Component {
     constructor(props){
@@ -99,6 +100,7 @@ class Register extends React.Component {
                         <br/>
                         <RaisedButton label="Submit" type="submit" primary={true} style={style} />
                         </ValidatorForm>
+                        Already have an account? <Link to="/">Log in </Link>
                     </div>
                 </MuiThemeProvider>
             </div>
