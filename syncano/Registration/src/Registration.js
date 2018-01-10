@@ -7,7 +7,7 @@ export default (ctx) => {
     users.create({username: ctx.args.email, password: ctx.args.password})
     .then(response.json({
         message: `Hello ${ctx.args.firstName} ${ctx.args.lastName}!`
-    }))
+    }),200)
   } else {
     response.json({
       message: 'You have to send all arguments to create user!'

@@ -1,7 +1,7 @@
 import Syncano from 'syncano-server'
 
 export default (ctx) => {
-  const {response} = Syncano(ctx)
+  const {response, users} = Syncano(ctx)
 
   if (ctx.args.username && ctx.args.password) {
     response.json({
