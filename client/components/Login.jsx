@@ -5,8 +5,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import { ValidatorForm } from 'react-form-validator-core';
 import { TextValidator} from 'react-material-ui-form-validator';
-import Syncano from 'syncano-client';
 import {Link} from 'react-router-dom';
+import Syncano from 'syncano-client'
 
 class Login extends React.Component {
     constructor(props){
@@ -26,14 +26,32 @@ class Login extends React.Component {
         const { loginForm } = this.state;
         loginForm[event.target.name] = event.target.value;
         this.setState({ loginForm });
-        console.log(loginForm);
     }
 
     handleSubmit(event) {
         const { loginForm } = this.state;
-        const s = new SyncanoClient('falling-wildflower-6623');
+        const s = new Syncano('falling-wildflower-6623');
         console.log(loginForm.username, loginForm.password)
-        s.login(loginForm.username, loginForm.password)
+        // s.setToken('asdasrera');
+        console.log('test')
+        const username = loginForm.username; const password =  loginForm.password;
+        console.log(JSON.stringify({username,password}));
+
+    //     const url = `https://api.syncano.io/v2/instances/${this
+    //     .instanceName}/users/auth/`
+    //   const data = JSON.stringify({username, password})
+
+    //   const cos = fetch({url, data}).then(user => {
+    //     // this.setToken(user.token)
+
+    //     console.log(user);
+    //     return user;
+    //   })
+    //   console.log(cos);
+
+    console.log(username);
+    console.log(password);
+        s.login(username,password)
         .then(user=>console.log('Hello ${user.first_name}'))
         .catch(() => console.log('Invalid username or password.'))
         // s.post('login/login', {username:this.state.username, password: this.state.password})
