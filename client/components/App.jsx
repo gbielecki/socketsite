@@ -7,6 +7,7 @@ import {
   
 import Login from './Login.jsx';
 import Register from './Register.jsx';
+import TodoApp from './TodoApp.jsx';
 
 
 export default class App extends React.Component {
@@ -16,6 +17,7 @@ export default class App extends React.Component {
         <div className="container">
           <Route exact path="/" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/sockets" component={TodoApp} />
         </div>
           </Router>
             // <div className="container" style={{textAlign: 'center'}}>

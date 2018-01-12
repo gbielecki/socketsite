@@ -1,0 +1,68 @@
+name: socketList
+description: Description of socketList
+version: 0.0.1
+
+class: 
+  socket:
+    - name: name
+      type: string
+    - name: description
+      type: string
+    - name: author
+      type: integer
+
+endpoints:
+  socketList:
+    description: Get ideas for socket list!
+    file: socketList.js
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+            "message": "Hello Tyler Durden!"
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "message": "You have to send "firstname" and "lastname" arguments!"
+            }
+
+  addsocket: 
+    description: Add new socket idea!
+    file: addSocket.js
+    parameters:
+      socketName:
+        type: string
+        description: "Name for new socket idea"
+        example: "map socket"
+      socketDescription:
+        type: string
+        description: "Description of new socket"
+        example: "Socket to gather data about maps"
+      token:
+        type: string
+        description: "Description of new socket"
+        example: "Socket to gather data about maps"
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+            "message": "Hello Tyler Durden!"
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "message": "You have to send "firstname" and "lastname" arguments!"
+            }  

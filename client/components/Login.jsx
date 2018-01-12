@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField';
 import { ValidatorForm } from 'react-form-validator-core';
 import { TextValidator} from 'react-material-ui-form-validator';
 import {Link} from 'react-router-dom';
-import Syncano from 'syncano-client'
+// import Syncano from 'syncano-client'
 
 class Login extends React.Component {
     constructor(props){
@@ -30,43 +30,16 @@ class Login extends React.Component {
 
     handleSubmit(event) {
         const { loginForm } = this.state;
-        const s = new Syncano('falling-wildflower-6623');
-        console.log(loginForm.username, loginForm.password)
-        // s.setToken('asdasrera');
-        console.log('test')
-        const username = loginForm.username; const password =  loginForm.password;
-        console.log(JSON.stringify({username,password}));
+        const s = new SyncanoClient('falling-wildflower-6623');
+        const username = loginForm.username; const password=  loginForm.password;
 
-    //     const url = `https://api.syncano.io/v2/instances/${this
-    //     .instanceName}/users/auth/`
-    //   const data = JSON.stringify({username, password})
-
-    //   const cos = fetch({url, data}).then(user => {
-    //     // this.setToken(user.token)
-
-    //     console.log(user);
-    //     return user;
-    //   })
-    //   console.log(cos);
-
-    console.log(username);
-    console.log(password);
-        s.login(username,password)
-        .then(user=>console.log('Hello ${user.first_name}'))
+        s.post('rest-auth/login', {username: username, password: password})
+        .then(user=> {
+            console.log(`Hello ${user.token}`)
+            console.log(user);
+            document.cookie = `token=${user.token}`;
+        })
         .catch(() => console.log('Invalid username or password.'))
-        // s.post('login/login', {username:this.state.username, password: this.state.password})
-        //     .then(function(response){
-        //         console.log(response);
-        //         if(response.data.code == 200) {
-        //             console.log("Login Successfull");
-        //         }
-        //         else if(response.data.code == 204){
-        //             console.log("Username password do not match");
-        //         }
-        //         else {
-        //             console.log("Username does not exists");
-        //         }
-        //     });
     }
 
     handleErrors (errors) {
@@ -91,6 +64,8 @@ class Login extends React.Component {
                         <RaisedButton label="Submit" primary={true} style={style} type="submit" /* onClick={(event) => this.handleClick(event)}*/ /> 
                         </ValidatorForm>
                         Don't have an account? <Link to="/register">Sign up</Link>
+                        <br /><br />
+                        <Link to="/sockets">TODO Sockets list</Link>
                     </div>
                 </MuiThemeProvider>
             </div>
