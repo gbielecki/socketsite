@@ -2,14 +2,14 @@ name: socketList
 description: Description of socketList
 version: 0.0.1
 
-class: 
+classes: 
   socket:
     - name: name
       type: string
     - name: description
       type: string
     - name: author
-      type: integer
+      type: string
 
 endpoints:
   socketList:

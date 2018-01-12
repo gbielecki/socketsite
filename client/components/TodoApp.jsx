@@ -61,7 +61,7 @@ class TodoApp extends React.Component {
         const {data} = this.state;
         console.log(data);
         console.log(val);
-        s.post('socketList/addsocket', {socketName: val, socketDescription: val, token: this.getCookie('token')})
+        s.post('socketlist/addsocket', {socketName: val, socketDescription: val, token: this.getCookie('token')})
         .then(socketsList=>{
             console.log(socketsList);
             this.setState({data: socketsList})
