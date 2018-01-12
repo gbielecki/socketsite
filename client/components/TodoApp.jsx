@@ -2,13 +2,14 @@ import React from 'react';
 
 const Todo = ({todo,remove}) => {
     return (
-        <li onClick={remove(todo.id)} > {todo.text} </li>
+        <li onClick={()=>{remove(todo.id)}} > <h3>{todo.name}</h3><h5>{todo.author}</h5> <p>{todo.description}</p>  </li>
     );
 }
 
 
 const TodoList = ({todos, remove}) => {
     const todoNode = todos.map((todo) => {
+        console.log(todo.id);
         return (<Todo todo={todo} key={todo.id} remove={remove} />)
     });
     return (<ul> {todoNode}</ul>)
@@ -51,6 +52,15 @@ class TodoApp extends React.Component {
         }
     }
 
+    componentDidMount(){
+        const s = new SyncanoClient('falling-wildflower-6623');
+        s.post('socketlist/socketList')
+        .then(socketsList=>{
+            console.log(socketsList);
+            this.setState({data: socketsList})
+        });
+    }
+
     getCookie(name) {
         const match = document.cookie.match(new RegExp(name + '=([^;]+)'));
         if (match) return match[1];
@@ -59,8 +69,6 @@ class TodoApp extends React.Component {
     addTodo(val){
         const s = new SyncanoClient('falling-wildflower-6623');
         const {data} = this.state;
-        console.log(data);
-        console.log(val);
         s.post('socketlist/addsocket', {socketName: val, socketDescription: val, token: this.getCookie('token')})
         .then(socketsList=>{
             console.log(socketsList);
@@ -70,12 +78,18 @@ class TodoApp extends React.Component {
       }
 
       handleRemove(id){
-        // Filter all todos except the one to be removed
-        const remainder = this.state.data.filter((todo) => {
-          if(todo.id !== id) return todo;
+        const s = new SyncanoClient('falling-wildflower-6623');
+        s.post('socketlist/removeSocket', {socketId: id})
+        .then(socketsList=>{
+            console.log(socketsList);
+            this.setState({data: socketsList})
         });
-        // Update state with filter
-        this.setState({data: remainder});
+        // Filter all todos except the one to be removed
+        // const remainder = this.state.data.filter((todo) => {
+        //   if(todo.id !== id) return todo;
+        // });
+        // // Update state with filter
+        // this.setState({data: remainder});
       }
 
     render(){

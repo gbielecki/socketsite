@@ -13,7 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = ctx => {
   const { response, data } = (0, _syncanoServer2.default)(ctx);
 
-  data.socket.fields('name', 'description', 'author').list().then(socketList => {
+  data.socket.list().then(socketList => {
     response.json(socketList);
   });
 };

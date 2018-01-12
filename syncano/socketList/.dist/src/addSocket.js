@@ -19,7 +19,7 @@ exports.default = ctx => {
       description: ctx.args.socketDescription,
       author: 'hardcodedVal'
     }).then(() => {
-      return data.socket.fields('title', 'author').list();
+      return data.socket.list();
     }).then(sockets => {
       response.json(sockets);
     });

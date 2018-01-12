@@ -66,3 +66,29 @@ endpoints:
             {
               "message": "You have to send "firstname" and "lastname" arguments!"
             }  
+
+  removeSocket: 
+    description: Add new socket idea!
+    file: removeSocket.js
+    parameters:
+      socketId:
+        type: integer
+        description: "id of socket idea"
+        example: "2"
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+            "message": "Hello Tyler Durden!"
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "message": "You have to send "firstname" and "lastname" arguments!"
+            }  
