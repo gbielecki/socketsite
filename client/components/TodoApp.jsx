@@ -2,7 +2,12 @@ import React from 'react';
 
 const Todo = ({todo,remove}) => {
     return (
-        <li onClick={()=>{remove(todo.id)}} > <h3>{todo.name}</h3><h5>{todo.author}</h5> <p>{todo.description}</p>  </li>
+        <li > 
+        <h3>{todo.name}</h3>
+        <h5>{todo.author}</h5> 
+        <p>{todo.description}</p>
+        <button className="btn btn-warning" onClick={()=>{remove(todo.id)}}>X</button> 
+         </li>
     );
 }
 
