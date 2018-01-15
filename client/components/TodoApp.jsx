@@ -1,4 +1,5 @@
 import React from 'react';
+import { DotLoader } from 'react-spinners';
 
 const Todo = ({todo,remove}) => {
     return (
@@ -55,7 +56,8 @@ class TodoApp extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            data: []
+            data: [],
+            listLoaded: false
         }
     }
 
@@ -65,6 +67,7 @@ class TodoApp extends React.Component {
         .then(socketsList=>{
             console.log(socketsList);
             this.setState({data: socketsList})
+            this.setState({listLoaded: true})
         });
     }
 
@@ -74,20 +77,24 @@ class TodoApp extends React.Component {
       }
 
     addTodo(val){
+        this.setState({listLoaded: false})
         const s = new SyncanoClient('falling-wildflower-6623');
         const {data} = this.state;
         s.post('socketlist/addsocket', {socketName: val, socketDescription: val})
         .then(socketsList=>{
             this.setState({data: socketsList})
+            this.setState({listLoaded: true})
         });
       }
 
       handleRemove(id){
+        this.setState({listLoaded: false})
         const s = new SyncanoClient('falling-wildflower-6623');
         s.post('socketlist/removeSocket', {socketId: id})
         .then(socketsList=>{
             console.log(socketsList);
             this.setState({data: socketsList})
+            this.setState({listLoaded: true})
         });
         // Filter all todos except the one to be removed
         // const remainder = this.state.data.filter((todo) => {
@@ -98,15 +105,22 @@ class TodoApp extends React.Component {
       }
 
     render(){
+        const { listLoaded } = this.state;
         return (
           <div>
             <Title todoCount={this.state.data.length}/>
             <TodoForm addTodo={this.addTodo.bind(this)}/>
-        <TodoList 
-          todos={this.state.data} 
-          remove={this.handleRemove.bind(this)}
-        />
-      </div>
+            {
+                listLoaded ? 
+                <TodoList 
+                todos={this.state.data} 
+                remove={this.handleRemove.bind(this)}
+                /> 
+                : <DotLoader
+                color={'#C3C2C4'} 
+              />
+            }
+          </div>
         );
       }
 }
