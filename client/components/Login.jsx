@@ -7,6 +7,7 @@ import { ValidatorForm } from 'react-form-validator-core';
 import { TextValidator} from 'react-material-ui-form-validator';
 import {Link} from 'react-router-dom';
 // import Syncano from 'syncano-client'
+import {Redirect} from 'react-router';
 
 class Login extends React.Component {
     constructor(props){
@@ -15,7 +16,8 @@ class Login extends React.Component {
             loginForm: {
                 username: '',
                 password: ''
-            }
+            },
+            redirectToNewPage: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,12 +34,15 @@ class Login extends React.Component {
         const { loginForm } = this.state;
         const s = new SyncanoClient('falling-wildflower-6623');
         const username = loginForm.username; const password=  loginForm.password;
+        const { history } = this.props;
 
         s.post('rest-auth/login', {username: username, password: password})
         .then(user=> {
-            console.log(`Hello ${user.token}`)
             console.log(user);
-            document.cookie = `token=${user.token}`;
+            s.setToken(user.token)
+            console.log(history);
+            this.setState({ redirectToNewPage: true })
+            console.log(this.state);
         })
         .catch(() => console.log('Invalid username or password.'))
     }
@@ -48,7 +53,14 @@ class Login extends React.Component {
     }
 
     render () {
-        const { loginForm } = this.state;
+        const { loginForm, redirectToNewPage } = this.state;
+        if (redirectToNewPage) {
+            return (
+            <Redirect to="/sockets"/>
+            )
+        }
+        else
+        {
         return (
             <div>
                 <MuiThemeProvider>
@@ -70,6 +82,7 @@ class Login extends React.Component {
                 </MuiThemeProvider>
             </div>
         )
+    }
     }
 }
 

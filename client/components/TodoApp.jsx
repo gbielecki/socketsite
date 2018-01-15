@@ -3,10 +3,13 @@ import React from 'react';
 const Todo = ({todo,remove}) => {
     return (
         <li > 
-        <h3>{todo.name}</h3>
-        <h5>{todo.author}</h5> 
-        <p>{todo.description}</p>
+            <div>
+                <input type="checkbox" />
+        <label>{todo.name}</label>
+        <label>{todo.description}</label>
+        <label>{todo.author}</label> 
         <button className="btn btn-warning" onClick={()=>{remove(todo.id)}}>X</button> 
+        </div>
          </li>
     );
 }
@@ -14,7 +17,6 @@ const Todo = ({todo,remove}) => {
 
 const TodoList = ({todos, remove}) => {
     const todoNode = todos.map((todo) => {
-        console.log(todo.id);
         return (<Todo todo={todo} key={todo.id} remove={remove} />)
     });
     return (<ul> {todoNode}</ul>)
@@ -74,12 +76,10 @@ class TodoApp extends React.Component {
     addTodo(val){
         const s = new SyncanoClient('falling-wildflower-6623');
         const {data} = this.state;
-        s.post('socketlist/addsocket', {socketName: val, socketDescription: val, token: this.getCookie('token')})
+        s.post('socketlist/addsocket', {socketName: val, socketDescription: val})
         .then(socketsList=>{
-            console.log(socketsList);
             this.setState({data: socketsList})
         });
-        console.log(this.state);
       }
 
       handleRemove(id){
