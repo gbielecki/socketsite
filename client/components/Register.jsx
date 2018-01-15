@@ -7,6 +7,7 @@ import axios from 'axios';
 import { ValidatorForm } from 'react-form-validator-core';
 import { TextValidator} from 'react-material-ui-form-validator';
 import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router';
 
 class Register extends React.Component {
     constructor(props){
@@ -19,6 +20,7 @@ class Register extends React.Component {
                 repeatPassword:'',
                 password:''
             },
+            redirectToNewPage: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -55,16 +57,22 @@ class Register extends React.Component {
     }
 
     handleSubmit(event) {
-        const { formData } = this.state;
+        const { formData, redirectToNewPage } = this.state;
         const s = new SyncanoClient('falling-wildflower-6623');
-        console.log({formData});
+        console.log(this.state);
         s.post('registration/registration', {firstName: formData.first_name, lastName:formData.last_name, email:formData.email, password: formData.password})
-            .then(function(response){
+            .then((response) => {
                 console.log(response);
                 if(response.code == 200) {
                     console.log("Registration Successfull");
+                    this.setState({ redirectToNewPage: true });
                 }
                 else {
+                    //temp
+                    console.log(this);
+                    console.log(this.state);
+                    console.log(this.state.redirectToNewPage);
+                    this.setState({ redirectToNewPage: true });
                     console.log("Registration Unsuccessfull");
                 }
             });
@@ -75,9 +83,12 @@ class Register extends React.Component {
     }
 
     render(){
-        const { formData, repeatPassword } = this.state;
+        const { formData, repeatPassword, redirectToNewPage  } = this.state;
         return(
             <div>
+                { redirectToNewPage ?
+                <Redirect to="/"/>
+                :
                 <MuiThemeProvider>
                     <div> 
                         <ValidatorForm ref="form" onSubmit={(event) => this.handleSubmit(event)} onError={errors => this.handleErrors(errors)} >
@@ -103,7 +114,8 @@ class Register extends React.Component {
                         Already have an account? <Link to="/">Log in </Link>
                     </div>
                 </MuiThemeProvider>
-            </div>
+                }
+                </div>
         )
     }
 }

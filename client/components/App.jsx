@@ -4,7 +4,7 @@ import {
     Route,
     Link
   } from 'react-router-dom';
-  
+import { browserHistory} from 'react-router';
 import Login from './Login.jsx';
 import Register from './Register.jsx';
 import TodoApp from './TodoApp.jsx';
@@ -13,10 +13,11 @@ import TodoApp from './TodoApp.jsx';
 export default class App extends React.Component {
     render() {
         return (
-        <Router>
+        <Router history={ browserHistory }>
         <div className="container">
           <Route exact path="/" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
           <Route path="/sockets" component={TodoApp} />
         </div>
           </Router>

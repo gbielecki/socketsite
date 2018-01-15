@@ -77,7 +77,7 @@ class Login extends React.Component {
                         </ValidatorForm>
                         Don't have an account? <Link to="/register">Sign up</Link>
                         <br /><br />
-                        <Link to="/sockets">TODO Sockets list</Link>
+                        {/* <Link to="/sockets">TODO Sockets list</Link> */}
                     </div>
                 </MuiThemeProvider>
             </div>
