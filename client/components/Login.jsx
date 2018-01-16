@@ -8,7 +8,6 @@ import { TextValidator} from 'react-material-ui-form-validator';
 import {Link} from 'react-router-dom';
 // import Syncano from 'syncano-client'
 import {Redirect} from 'react-router';
-import NavBarClass from './NavBar.jsx';
 
 
 
@@ -96,7 +95,6 @@ class Login extends React.Component {
             <div>
                 <MuiThemeProvider>
                     <div>
-                        <NavBarClass/>
                         <ValidatorForm ref="form" onSubmit={(event) => this.handleSubmit(event)} onError={errors => this.handleErrors(errors)} >
                         {/* <AppBar title="Login"  onLeftIconButtonClick={this.handleMenuClick} />
                         <LeftNav ref="leftNav" docked={false}  menuItems={menuItems} >
