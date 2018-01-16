@@ -1,6 +1,6 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
+import {LeftNav, MenuItem, AppBar} from 'material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import { ValidatorForm } from 'react-form-validator-core';
@@ -8,6 +8,9 @@ import { TextValidator} from 'react-material-ui-form-validator';
 import {Link} from 'react-router-dom';
 // import Syncano from 'syncano-client'
 import {Redirect} from 'react-router';
+import NavBarClass from './NavBar.jsx';
+
+
 
 class Login extends React.Component {
     constructor(props){
@@ -22,6 +25,7 @@ class Login extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleErrors = this.handleErrors.bind(this);
+        this.handleMenuClick =this.handleMenuClick.bind(this);
     }
 
     handleChange(event) {
@@ -52,6 +56,12 @@ class Login extends React.Component {
         console.log(errors);
     }
 
+    handleMenuClick(e) {
+        e.preventDefault();
+        // Show/Hide the LeftMenu
+        this.refs.leftNav.toggle();
+      }
+
     render () {
         const { loginForm, redirectToNewPage } = this.state;
         if (redirectToNewPage) {
@@ -61,12 +71,37 @@ class Login extends React.Component {
         }
         else
         {
+            // const menuItems = [
+                // { route: 'get-started', text: 'Get Started' },
+                // { route: 'customization', text: 'Customization' },
+                // { route: 'components', text: 'Components' },
+                // {                // { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
+
+                //    type: MenuItem.Types.LINK,
+                //    payload: 'https://github.com/callemall/material-ui',
+                //    text: 'GitHub'
+                // },
+                // {
+                //    text: 'Disabled',
+                //    disabled: true
+                // },
+                // {
+                //    type: MenuItem.Types.LINK,
+                //    payload: 'https://www.google.com',
+                //    text: 'Disabled Link',
+                //    disabled: true
+                // },
+            //   ];
         return (
             <div>
                 <MuiThemeProvider>
                     <div>
+                        <NavBarClass/>
                         <ValidatorForm ref="form" onSubmit={(event) => this.handleSubmit(event)} onError={errors => this.handleErrors(errors)} >
-                        <AppBar title="Login" />
+                        {/* <AppBar title="Login"  onLeftIconButtonClick={this.handleMenuClick} />
+                        <LeftNav ref="leftNav" docked={false}  menuItems={menuItems} >
+                            <MenuItem onTouchTap={this.closeLeftNav} value={'/'} primaryText="Home"/>
+                        </LeftNav> */}
                         <TextValidator hintText="Enter yout Username" floatingLabelText="Username" name="username" onChange ={this.handleChange}
                          validators={['required']} errorMessages={['this field is required']}  value={loginForm.username} />
                         <br />

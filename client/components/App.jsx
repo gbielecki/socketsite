@@ -8,7 +8,7 @@ import { browserHistory} from 'react-router';
 import Login from './Login.jsx';
 import Register from './Register.jsx';
 import TodoApp from './TodoApp.jsx';
-
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default class App extends React.Component {
     render() {

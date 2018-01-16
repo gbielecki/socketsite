@@ -21,6 +21,8 @@ module.exports = {
     loaders: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+      ,{test: /\.scss$/, loaders: [ 'style', 'css', 'sass' ]}
+      , { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] }
     ]
   },
   devServer: {
