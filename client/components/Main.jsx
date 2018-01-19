@@ -8,6 +8,7 @@ import {
   import Login from './Login.jsx';
 import Register from './Register.jsx';
 import TodoApp from './TodoApp.jsx';
+import Logout from './Logout.jsx';
 
 
 export default class Main extends React.Component {
@@ -23,6 +24,7 @@ export default class Main extends React.Component {
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} loginCallback={this.loginCallback} />
             <Route path="/sockets" component={TodoApp} />
+            <Route path="/logout" component={Logout} />
             
           </main>
         )
