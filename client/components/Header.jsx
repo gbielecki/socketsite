@@ -1,12 +1,16 @@
 import React from 'react';
-import NavBarClass from './NavBar.jsx';
+import NavBar from './NavBar.jsx';
 
 
 export default class Header extends React.Component {
+    constructor(props){
+        super(props); 
+    }
+
     render() {
         return (
             <header>
-                <NavBarClass/>
+                <NavBar />
             </header>
         )
     }

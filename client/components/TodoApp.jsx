@@ -1,17 +1,36 @@
 import React from 'react';
 import { DotLoader } from 'react-spinners';
 
+const borderStyle = {
+    borderBottom: '1px solid #ededed'
+  };
+
+  const buttonPadding = {
+    margin: '2px'
+  };
+
+  
+
 const Todo = ({todo,remove}) => {
     return (
-        <li > 
+        // <li > 
             <div>
-                <input type="checkbox" />
-        <label>{todo.name}</label>
-        <label>{todo.description}</label>
-        <label>{todo.author}</label> 
-        <button className="btn btn-warning" onClick={()=>{remove(todo.id)}}>X</button> 
-        </div>
-         </li>
+                <div className="row mt-3" style={borderStyle}>
+                    <div className="col col-lg-3 col-xs-12">
+                        <input type="checkbox" />
+                        <label>{todo.name}</label>
+                    </div>
+                    <div className="col col-lg-5 col-xs-12">
+                        <label>{todo.description}</label>
+                    </div>
+                    <div className="col col-lg-4 col-xs-12">
+                        <label>{todo.author}</label> 
+                        <button className="btn btn-danger float-right buttonPadding" onClick={()=>{remove(todo.id)}}>X</button> 
+                    </div>
+                    <hr />
+                </div>
+            </div>
+        //  </li>
     );
 }
 
@@ -20,7 +39,7 @@ const TodoList = ({todos, remove}) => {
     const todoNode = todos.map((todo) => {
         return (<Todo todo={todo} key={todo.id} remove={remove} />)
     });
-    return (<ul> {todoNode}</ul>)
+    return (<div> {todoNode}</div>)
 }
 
 const TodoForm = ({addTodo}) => {
@@ -62,7 +81,7 @@ class TodoApp extends React.Component {
     }
 
     componentDidMount(){
-        const s = new SyncanoClient('falling-wildflower-6623');
+        const s = new SyncanoClient('weathered-meadow-2233');
         s.post('socketlist/socketList')
         .then(socketsList=>{
             console.log(socketsList);
@@ -78,7 +97,7 @@ class TodoApp extends React.Component {
 
     addTodo(val){
         this.setState({listLoaded: false})
-        const s = new SyncanoClient('falling-wildflower-6623');
+        const s = new SyncanoClient('weathered-meadow-2233');
         const {data} = this.state;
         s.post('socketlist/addsocket', {socketName: val, socketDescription: val})
         .then(socketsList=>{
@@ -89,7 +108,7 @@ class TodoApp extends React.Component {
 
       handleRemove(id){
         this.setState({listLoaded: false})
-        const s = new SyncanoClient('falling-wildflower-6623');
+        const s = new SyncanoClient('weathered-meadow-2233');
         s.post('socketlist/removeSocket', {socketId: id})
         .then(socketsList=>{
             console.log(socketsList);

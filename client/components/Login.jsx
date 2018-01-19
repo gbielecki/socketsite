@@ -8,7 +8,8 @@ import { TextValidator} from 'react-material-ui-form-validator';
 import {Link} from 'react-router-dom';
 // import Syncano from 'syncano-client'
 import {Redirect} from 'react-router';
-
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 
 class Login extends React.Component {
@@ -21,6 +22,7 @@ class Login extends React.Component {
             },
             redirectToNewPage: false
         }
+        console.log(this.props)
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleErrors = this.handleErrors.bind(this);
@@ -35,9 +37,11 @@ class Login extends React.Component {
 
     handleSubmit(event) {
         const { loginForm } = this.state;
-        const s = new SyncanoClient('falling-wildflower-6623');
+        const {logged} = this.props;
+        const s = new SyncanoClient('weathered-meadow-2233');
         const username = loginForm.username; const password=  loginForm.password;
         const { history } = this.props;
+        this.props.onLogin();
 
         s.post('rest-auth/login', {username: username, password: password})
         .then(user=> {
@@ -123,4 +127,25 @@ const style = {
     margin: 15,
 };
 
-export default Login;
+Login.propTypes = {
+  logged: PropTypes.bool,
+  onLogin: PropTypes.func,
+  onLogout: PropTypes.func
+};
+
+const mapStateToProps = (state) => {
+  return {logged: state.logged};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLogin: () => dispatch({ type: 'LOGIN' }),
+    onLogout: () => dispatch({ type: 'LOGOUT' })
+  }
+};
+
+Login = connect( mapStateToProps, mapDispatchToProps)(Login)
+
+export default Login
+
+

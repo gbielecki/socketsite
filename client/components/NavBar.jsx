@@ -12,14 +12,15 @@ import {
     DropdownMenu,
     DropdownItem } from 'reactstrap';
     import {Link} from 'react-router-dom';
+    import { connect } from 'react-redux';
 
-    export default class NavBarClass extends React.Component {
+class NavBarClass extends React.Component {
         constructor(props) {
           super(props);
       
           this.toggle = this.toggle.bind(this);
           this.state = {
-            isOpen: false
+            isOpen: false,
           };
         }
         toggle() {
@@ -28,6 +29,7 @@ import {
           });
         }
         render() {
+          const {logged} =this.props;
           return (
             <div>
               <Navbar color="faded" light expand="md">
@@ -35,9 +37,13 @@ import {
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                   <Nav className="ml-auto" navbar>
-                    <NavItem>
+                  {logged ? 
+                  <NavItem>Logout</NavItem> 
+                  : 
+                  <NavItem>
                         <Link to="/register">Register</Link>
-                    </NavItem>
+                    </NavItem> 
+                  }
                     <NavItem>
                       <NavLink href="https://github.com/polarbits/socketsite">Github</NavLink>
                     </NavItem>
@@ -65,3 +71,17 @@ import {
           );
         }
       }
+
+      
+const mapStateToProps = (state) => {
+  return {logged: state.logged};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLogin: () => dispatch({ type: 'LOGIN' }),
+    onLogout: () => dispatch({ type: 'LOGOUT' })
+  }
+};
+
+export default NavBarClass = connect( mapStateToProps, mapDispatchToProps)(NavBarClass)
