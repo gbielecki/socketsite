@@ -8,7 +8,7 @@ export default (ctx) => {
     const password = ctx.args.password;
   } else {
     response.json({
-      message: 'You have to send "firstname" and "lastname" arguments!'
+      message: 'You have to send "username" and "password" arguments!'
     }, 400)
   }
 }

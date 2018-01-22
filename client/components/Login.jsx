@@ -10,6 +10,7 @@ import {Link} from 'react-router-dom';
 import {Redirect} from 'react-router';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import {axios} from 'axios'
 
 
 class Login extends React.Component {
@@ -43,7 +44,9 @@ class Login extends React.Component {
         const { history } = this.props;
         this.props.onLogin();
 
-        s.post('rest-auth/login', {username: username, password: password})
+        // s.post('rest-auth/login', {username: username, password: password})
+        s.login(username, password)
+        axios.post('https://api.syncano.rocks/v2/instances/young-hill-1592/endpoints/sockets/socketlist/login/',{username:username, password:password})
         .then(user=> {
             console.log(user);
             s.setToken(user.token)

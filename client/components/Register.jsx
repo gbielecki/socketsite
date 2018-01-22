@@ -37,9 +37,12 @@ class Register extends React.Component {
     }
 
     handleClick(event) {
-        const s = new SyncanoClient('young-hill-1592');
-        s.post('registration/registration', {firstName:this.state.first_name, lastName:this.state.last_name, email:this.state.email, password: this.state.password})
+        // const s = new SyncanoClient('young-hill-1592');
+        // s.post('registration/registration', {firstName:this.state.first_name, lastName:this.state.last_name, email:this.state.email, password: this.state.password})
+        axios.get('https://api.syncano.rocks/v2/instances/young-hill-1592/endpoints/sockets/registration/registration/', 
+        {firstName:this.state.first_name, lastName:this.state.last_name, email:this.state.email, password: this.state.password})
             .then(function(response){
+                console.log('sukces dodawani uzytkownika(register)')
                 console.log(response);
                 if(response.data.code == 200) {
                     console.log("Registration Successfull");
@@ -58,9 +61,11 @@ class Register extends React.Component {
 
     handleSubmit(event) {
         const { formData, redirectToNewPage } = this.state;
-        const s = new SyncanoClient('young-hill-1592');
-        console.log(this.state);
-        s.post('registration/registration', {firstName: formData.first_name, lastName:formData.last_name, email:formData.email, password: formData.password})
+        // const s = new SyncanoClient('young-hill-1592');
+        // console.log(this.state);
+        // s.post('registration/registration', {firstName: formData.first_name, lastName:formData.last_name, email:formData.email, password: formData.password})
+        axios.post('https://api.syncano.rocks/v2/instances/young-hill-1592/endpoints/sockets/registration/registration/', 
+        {firstName:formData.first_name, lastName: formData.last_name, email: formData.email, password: formData.password})
             .then((response) => {
                 console.log(response);
                 if(response.code == 200) {
