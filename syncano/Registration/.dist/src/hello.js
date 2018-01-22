@@ -11,7 +11,7 @@ var _core2 = _interopRequireDefault(_core);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = ctx => {
-  const { response, users } = new _core2.default(ctx);
+  const { response, users } = (0, _core2.default)(ctx);
 
   if (ctx.args.firstName && ctx.args.lastName && ctx.args.email && ctx.args.password) {
     users.create({ username: ctx.args.email, password: ctx.args.password }).then(response.json({

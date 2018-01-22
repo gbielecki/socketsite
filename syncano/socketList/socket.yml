@@ -17,21 +17,26 @@ endpoints:
     file: socketList.js
     response:
       mimetype: application/json
-      examples:
-        -
-          exit_code: 200
-          description: Success
-          example: |
-            {
-            "message": "Hello Tyler Durden!"
-            }
-        -
-          exit_code: 400
-          description: Failed
-          example: |
-            {
-              "message": "You have to send "firstname" and "lastname" arguments!"
-            }
+      success:
+        description: Success
+        parameters:
+          message:
+            description: Hello message
+        example: |
+          {
+            "message": "socketList!"
+          }
+      fail:
+        exit_code: 400
+        description: Failed
+        parameters:
+          message:
+            description: Error message
+        example: |
+          {
+            "message": "Error!"
+          } 
+
 
   addsocket: 
     description: Add new socket idea!
@@ -47,21 +52,25 @@ endpoints:
         example: "Socket to gather data about maps"
     response:
       mimetype: application/json
-      examples:
-        -
-          exit_code: 200
-          description: Success
-          example: |
-            {
-            "message": "Hello Tyler Durden!"
-            }
-        -
-          exit_code: 400
-          description: Failed
-          example: |
-            {
-              "message": "You have to send "firstname" and "lastname" arguments!"
-            }  
+      success:
+        description: Success
+        parameters:
+          message:
+            description: Hello message
+        example: |
+          {
+            "message": "Added new socket! Updated SocketList returned"
+          }
+      fail:
+        exit_code: 400
+        description: Failed
+        parameters:
+          message:
+            description: Error message
+        example: |
+          {
+            "message": "New socket idea could not been added!"
+          } 
 
   removeSocket: 
     description: Add new socket idea!
@@ -73,18 +82,22 @@ endpoints:
         example: "2"
     response:
       mimetype: application/json
-      examples:
-        -
-          exit_code: 200
-          description: Success
-          example: |
-            {
-            "message": "Hello Tyler Durden!"
-            }
-        -
-          exit_code: 400
-          description: Failed
-          example: |
-            {
-              "message": "You have to send "firstname" and "lastname" arguments!"
-            }  
+      success:
+        description: Success
+        parameters:
+          message:
+            description: Hello message
+        example: |
+          {
+            "message": "New socket idea deleted. Updated SocketList returned"
+          }
+      fail:
+        exit_code: 400
+        description: Failed
+        parameters:
+          message:
+            description: Error message
+        example: |
+          {
+            "message": "Could not delete record!"
+          }

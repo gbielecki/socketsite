@@ -1,7 +1,7 @@
-import Syncano from 'syncano-server'
+import Syncano from '@syncano/core'
 
 export default (ctx) => {
-  const {response, users} = Syncano(ctx)
+  const {response, users} = new Syncano(ctx)
 
   if (ctx.args.firstName && ctx.args.lastName && ctx.args.email && ctx.args.password) {
     users.create({username: ctx.args.email, password: ctx.args.password})

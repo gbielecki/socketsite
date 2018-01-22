@@ -1,12 +1,9 @@
-import Syncano from 'syncano-server';
-// import fetch from 'axios';
-import SyncanoClient from 'syncano-client';
+import Syncano from '@syncano/core'
 
 export default (ctx) => {
-  const {response, users} = Syncano(ctx)
+  const {response, users} = new  Syncano(ctx)
 
   if (ctx.args.username && ctx.args.password) {
-    const s = new SyncanoClient('falling-wildflower-6623')
     const username = ctx.args.username;
     const password = ctx.args.password;
   } else {

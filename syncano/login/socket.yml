@@ -1,11 +1,12 @@
-name: login
+name: Login
 description: Login Socket
 version: 0.0.1
+runtime: nodejs_v8
 
 endpoints:
   login:
     description: Login!
-    file: login.js
+    file: Login.js
     parameters:
       username:
         type: string
@@ -17,24 +18,33 @@ endpoints:
         example: "Durden"
     response:
       mimetype: application/json
-      examples:
-        -
-          exit_code: 200
-          description: Success
-          example: |
-            {
-            "message": "Login Successfull!"
-            }
-        -
+      success:
+        description: Success
+        parameters:
+          message:
+            description: Hello message
+        example: |
+          {
+            "message": "message": "Login Successfull!"
+          }
+      fail:
+        - 
           exit_code: 204
           description: Failed
+          parameters:
+            message:
+              description: Error message
+
           example: |
             {
-              "message": "Username password do not match!"
+              "message": "Username or password do not match!"
             }
         -
           exit_code: 400
           description: Failed
+          parameters:
+            message:
+              description: Error message
           example: |
             {
               "message": "Username does not exists"

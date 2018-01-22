@@ -81,7 +81,7 @@ class TodoApp extends React.Component {
     }
 
     componentDidMount(){
-        const s = new SyncanoClient('weathered-meadow-2233');
+        const s = new SyncanoClient('young-hill-1592');
         s.post('socketlist/socketList')
         .then(socketsList=>{
             console.log(socketsList);
@@ -97,7 +97,7 @@ class TodoApp extends React.Component {
 
     addTodo(val){
         this.setState({listLoaded: false})
-        const s = new SyncanoClient('weathered-meadow-2233');
+        const s = new SyncanoClient('young-hill-1592');
         const {data} = this.state;
         s.post('socketlist/addsocket', {socketName: val, socketDescription: val})
         .then(socketsList=>{
@@ -108,7 +108,7 @@ class TodoApp extends React.Component {
 
       handleRemove(id){
         this.setState({listLoaded: false})
-        const s = new SyncanoClient('weathered-meadow-2233');
+        const s = new SyncanoClient('young-hill-1592');
         s.post('socketlist/removeSocket', {socketId: id})
         .then(socketsList=>{
             console.log(socketsList);

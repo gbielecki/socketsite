@@ -37,7 +37,7 @@ class Register extends React.Component {
     }
 
     handleClick(event) {
-        const s = new SyncanoClient('falling-wildflower-6623');
+        const s = new SyncanoClient('young-hill-1592');
         s.post('registration/registration', {firstName:this.state.first_name, lastName:this.state.last_name, email:this.state.email, password: this.state.password})
             .then(function(response){
                 console.log(response);
@@ -58,7 +58,7 @@ class Register extends React.Component {
 
     handleSubmit(event) {
         const { formData, redirectToNewPage } = this.state;
-        const s = new SyncanoClient('falling-wildflower-6623');
+        const s = new SyncanoClient('young-hill-1592');
         console.log(this.state);
         s.post('registration/registration', {firstName: formData.first_name, lastName:formData.last_name, email:formData.email, password: formData.password})
             .then((response) => {

@@ -1,7 +1,0 @@
-hosting:
-  staging:
-    src: ../dist
-dependencies:
-  sockets:
-    rest-auth:
-      version: 0.0.15

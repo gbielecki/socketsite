@@ -1,7 +1,7 @@
 import Syncano from 'syncano-server'
 
 export default (ctx) => {
-  const {data,response} = Syncano(ctx)
+  const {data,response} =  new Syncano(ctx)
 
   if (ctx.args.socketName && ctx.args.socketDescription) {
       

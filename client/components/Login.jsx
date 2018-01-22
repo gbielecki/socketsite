@@ -38,7 +38,7 @@ class Login extends React.Component {
     handleSubmit(event) {
         const { loginForm } = this.state;
         const {logged} = this.props;
-        const s = new SyncanoClient('weathered-meadow-2233');
+        const s = new SyncanoClient('young-hill-1592');
         const username = loginForm.username; const password=  loginForm.password;
         const { history } = this.props;
         this.props.onLogin();
@@ -66,8 +66,9 @@ class Login extends React.Component {
       }
 
     render () {
-        const { loginForm, redirectToNewPage } = this.state;
-        if (redirectToNewPage) {
+        const { loginForm } = this.state;
+        const { logged } = this.props;
+        if (logged) {
             return (
             <Redirect to="/sockets"/>
             )

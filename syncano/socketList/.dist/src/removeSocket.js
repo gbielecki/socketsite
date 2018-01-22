@@ -11,7 +11,7 @@ var _syncanoServer2 = _interopRequireDefault(_syncanoServer);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = ctx => {
-    const { response, data } = (0, _syncanoServer2.default)(ctx);
+    const { response, data } = new _syncanoServer2.default(ctx);
 
     if (ctx.args.socketId) {
         data.socket.delete(ctx.args.socketId).then(() => {

@@ -1,7 +1,7 @@
-import Syncano from 'syncano-server'
+import Syncano from '@syncano/core'
 
 export default (ctx) => {
-  const {response,data} = Syncano(ctx)
+  const {response,data} =  new Syncano(ctx)
   
      data.socket.list()
     .then(socketList => {

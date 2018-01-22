@@ -1,7 +1,7 @@
 import Syncano from 'syncano-server'
 
 export default (ctx) => {
-  const {response,data} = Syncano(ctx)
+  const {response,data} =  new Syncano(ctx)
 
   if (ctx.args.socketId) {
     data.socket.delete(ctx.args.socketId)

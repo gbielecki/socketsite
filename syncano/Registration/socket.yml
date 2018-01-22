@@ -1,6 +1,7 @@
 name: Registration
 description: Description of Registration
 version: 0.0.1
+runtime: nodejs_v8
 
 endpoints:
   registration:
@@ -25,18 +26,24 @@ endpoints:
         example: "adminabcd1234"
     response:
       mimetype: application/json
-      examples:
-        -
-          exit_code: 200
-          description: Success
-          example: |
-            {
+      success:
+        description: Success
+        parameters:
+          message:
+            description: Hello message
+        example: |
+          {
             "message": "Registration Successfull!"
-            }
-        -
-          exit_code: 400
-          description: Failed
-          example: |
-            {
-              "message": "Registration does not completed successfully"
-            }
+          }
+      fail:
+        exit_code: 400
+        description: Failed
+        parameters:
+          message:
+            description: Error message
+
+        example: |
+          {
+            "message": "Registration does not completed successfully"
+          }
+
